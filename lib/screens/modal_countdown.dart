@@ -13,7 +13,7 @@ class CountdownModal extends StatefulWidget {
 }
 
 class _CountdownModalState extends State<CountdownModal> {
-  int countdown = 10;
+  int countdown = 3;
 
   @override
   void initState() {
