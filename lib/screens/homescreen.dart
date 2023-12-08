@@ -1,37 +1,50 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:gender_reveal/screens/modal_countdown.dart';
 import 'package:gender_reveal/screens/reveal_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  void showCountdownModal(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return CountdownModal(
+          onCountdownComplete: () {
+            Navigator.pop(context); // Close the countdown modal
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RevealScreen(),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black,
-        elevation: 0,
-        // title: const Text(
-        //   'Gender Reveal',
-        //   style: TextStyle(
-        //     fontSize: 24,
-        //     fontWeight: FontWeight.bold,
-        //   ),
-        // ),
-        // centerTitle: true,
-      ),
-      body: Center(
-        child: ElevatedButton(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/5600759.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const RevealScreen()));
+              showCountdownModal(context);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.black,
@@ -44,7 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            child: const Text('Gender Reveal')),
+            child: const Text('Gender Reveal'),
+          ),
+        ),
       ),
     );
   }

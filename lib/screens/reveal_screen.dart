@@ -12,15 +12,14 @@ class _RevealScreenState extends State<RevealScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.pink,
-        child: const Center(
-          child: Text(" It's a girl! ",
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white)),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/images/9102344.jpg"),
+              fit: BoxFit.cover),
         ),
+        child: null,
       ),
+
     );
   }
 }
